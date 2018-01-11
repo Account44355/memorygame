@@ -19,8 +19,9 @@ const card10 = document.querySelector("li.card10");
 
 const cards = [card1, card2, card3, card4, card5, card6, card7, card8, card9, card10];
 
-const newCard1 = document.querySelector('li.card1')
-newCard1.addEventListener('click', function () {
+card1.addEventListener('click', function () {
+  
+  
   console.log('The heading was clicked!');
 });
 
