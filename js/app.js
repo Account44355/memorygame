@@ -1,45 +1,27 @@
 /*
  * Create a list that holds all of your cards
  */
-
-
+const card1 = document.querySelector(".card1")
+const card2 = document.querySelector(".card2")
+const card3 = document.querySelector(".card3")
+const card4 = document.querySelector(".card4")
+const card5 = document.querySelector(".card5")
+const card6 = document.querySelector(".card6")
+const card7 = document.querySelector(".card7")
+const card8 = document.querySelector(".card8")
 
 
 const cards = [
-    "flag",
-    "bahamas",
-    "southSudan",
-    "canada",
-    "china",
-    "israel",
-    "japan",
-    "unitedKingdom"
+    "card1",
+    "card2",
+    "card3",
+    "card4",
+    "card5",
+    "card6",
+    "card7",
+    "card8",
 ];
 
-
-function shuffle(cards) {
-    var currentIndex = cards.length, temporaryValue, randomIndex;
-
-    while (currentIndex !== 0) {
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex -= 1;
-        temporaryValue = cards[currentIndex];
-        cards[currentIndex] = cards[randomIndex];
-        cards[randomIndex] = temporaryValue;
-    }
-
-    return cards;
-
-
-}
-
-
-for (const digit of cards) {
-
-    console.log(digit);
-}
-
-/*
 
 /*
  * Display the cards on the page
@@ -50,5 +32,47 @@ for (const digit of cards) {
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 
+const nanodegreeCard = document.getElementsByClassName('card');
 
 
+function shuffle(nanodegreeCard) {
+    var currentIndex = nanodegreeCard.length, temporaryValue, randomIndex;
+
+    while (currentIndex !== 0) {
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex -= 1;
+        temporaryValue = nanodegreeCard[currentIndex];
+        nanodegreeCard[currentIndex] = nanodegreeCard[randomIndex];
+        nanodegreeCard[randomIndex] = temporaryValue;
+    }
+
+    return nanodegreeCard;
+
+}
+
+for (const digit of nanodegreeCard) {
+const clickCard = document.querySelector('.card');
+
+clickCard.addEventListener('click', function () {
+
+  console.log('Only 1st card class is clicked and looped 16 times');
+});
+
+console.log(digit)}
+
+
+
+
+
+
+
+
+/* set up the event listener for a card. If a card is clicked:
+ *  - display the card's symbol (put this functionality in another function that you call from this one)
+ *  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
+ *  - if the list already has another card, check to see if the two cards match
+ *    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
+ *    + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
+ *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
+ *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
+ */
