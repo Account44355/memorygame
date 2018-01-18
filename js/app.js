@@ -1,25 +1,27 @@
 /*
  * Create a list that holds all of your cards
  */
-const card1 = document.querySelector(".card1")
-const card2 = document.querySelector(".card2")
-const card3 = document.querySelector(".card3")
-const card4 = document.querySelector(".card4")
-const card5 = document.querySelector(".card5")
-const card6 = document.querySelector(".card6")
-const card7 = document.querySelector(".card7")
-const card8 = document.querySelector(".card8")
+
+
+const card1 = document.querySelector('.card1');
+const card2 = document.querySelector('.card2');
+const card3 = document.querySelector('.card3');
+const card4 = document.querySelector('.card4');
+const card5 = document.querySelector('.card5');
+const card6 = document.querySelector('.card6');
+const card7 = document.querySelector('.card7');
+const card8 = document.querySelector('.card8');
 
 
 const cards = [
-    "card1",
-    "card2",
-    "card3",
-    "card4",
-    "card5",
-    "card6",
-    "card7",
-    "card8",
+    'card1',
+    'card2',
+    'card3',
+    'card4',
+    'card5',
+    'card6',
+    'card7',
+    'card8',
 ];
 
 
@@ -32,37 +34,43 @@ const cards = [
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 
-const nanodegreeCard = document.getElementsByClassName('card');
 
 
-function shuffle(nanodegreeCard) {
-    var currentIndex = nanodegreeCard.length, temporaryValue, randomIndex;
+
+function shuffle(array) {
+    var currentIndex = array.length, temporaryValue, randomIndex;
 
     while (currentIndex !== 0) {
         randomIndex = Math.floor(Math.random() * currentIndex);
         currentIndex -= 1;
-        temporaryValue = nanodegreeCard[currentIndex];
-        nanodegreeCard[currentIndex] = nanodegreeCard[randomIndex];
-        nanodegreeCard[randomIndex] = temporaryValue;
+        temporaryValue = array[currentIndex];
+        array[currentIndex] = array[randomIndex];
+        array[randomIndex] = temporaryValue;
     }
 
-    return nanodegreeCard;
-
+    return array;
 }
 
-for (const digit of nanodegreeCard) {
-const clickCard = document.querySelector('.card');
+shuffle(cards);
 
-clickCard.addEventListener('click', function () {
+function displaySymbol() {
+    document.getElementById('card').className = 'card', 'show';
+    console.log('symbol shown');
+    };
 
-  console.log('Only 1st card class is clicked and looped 16 times');
+
+
+document.getElementById('card1').addEventListener('click', function () {
+    const selectDeck = document.querySelector('.deck');
+    selectDeck.classList.remove('card')
+    const showOpenCard = document.createElement('li');
+    //displaySymbol(card1);
+    showOpenCard.classList.add('open');
+
+    selectDeck.appendChild(showOpenCard);
+    console.log('clicked!');
+
 });
-
-console.log(digit)}
-
-
-
-
 
 
 
@@ -76,3 +84,5 @@ console.log(digit)}
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
+
+
