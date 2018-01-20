@@ -24,6 +24,7 @@ const cards = [
     'card8',
 ];
 
+const cardsOpen = [];
 
 /*
  * Display the cards on the page
@@ -54,24 +55,32 @@ function shuffle(array) {
 shuffle(cards);
 
 function displaySymbol() {
-    document.getElementById('card').className = 'card', 'show';
+    const selectCard = document.querySelector('.card');
+    selectCard.classList.add('show');
     console.log('symbol shown');
     };
 
+function openCard() {
+    const selectCard = document.querySelector('.card');
+    selectCard.classList.add('open');
+    cardsOpen.push(selectCard);
+       if (selectCard === selectCard) {
+        selectCard.classList.add('match');
+        console.log('yes');
+    } else {
+        selectCard.classList.remove('open', 'show')
+        console.log('no');
+    }
 
+    console.log('card open');
+};
 
-document.getElementById('card1').addEventListener('click', function () {
-    const selectDeck = document.querySelector('.deck');
-    selectDeck.classList.remove('card')
-    const showOpenCard = document.createElement('li');
-    //displaySymbol(card1);
-    showOpenCard.classList.add('open');
+document.getElementById('card5').addEventListener('click', function () {
+    displaySymbol();
+    openCard();
 
-    selectDeck.appendChild(showOpenCard);
     console.log('clicked!');
-
 });
-
 
 
 
@@ -84,5 +93,4 @@ document.getElementById('card1').addEventListener('click', function () {
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
-
 
