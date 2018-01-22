@@ -55,18 +55,16 @@ function shuffle(array) {
 shuffle(cards);
 
 function displaySymbol() {
-    const selectCard = this; // this refers to the card that was clicked
+    const selectCard = this;
     selectCard.classList.add('show');
-    console.log('symbol shown', this); // log the card that was clicked
-};
-
+    console.log('symbol shown', this);
+    };
 
 function openCard() {
-    const selectCard = this;
+    const selectCard = document.querySelector('.card');
     selectCard.classList.add('open');
-
     cardsOpen.push(selectCard);
-       if (selectCard === 2) {
+       if (selectCard === selectCard) {
         selectCard.classList.add('match');
         console.log('yes');
     } else {
@@ -74,16 +72,30 @@ function openCard() {
         console.log('no');
     }
 
-    console.log('ran');
+    console.log('card open');
 };
 
-cards.addEventListener('click', function () {
-    displaySymbol(this);
-    openCard(this);
+
+document.getElementsByClassName('card').forEach(cardEl => {
+  cardEl.addEventListener('click', function() {
+       displaySymbol(this);
+       openCard(this);
+       console.log('clicked')
+
+    // now you can pass in the card el that was clicked, either using this or the cardEl variable
+  });
+});
+
+
+/*
+
+document.getElementById('card5').addEventListener('click', function () {
+    displaySymbol();
+    openCard();
 
     console.log('clicked!');
 });
-
+*/
 
 /*
 function moveCounter()  {
@@ -94,7 +106,7 @@ function moveCounter()  {
 }
 moveCounter();
 
-*/
+
 
 /* set up the event listener for a card. If a card is clicked:
  *  - display the card's symbol (put this functionality in another function that you call from this one)
