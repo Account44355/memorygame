@@ -88,11 +88,9 @@ document.getElementsByClassName('card').forEach(cardEl => {
 
 
 /*
-
 document.getElementById('card5').addEventListener('click', function () {
     displaySymbol();
     openCard();
-
     console.log('clicked!');
 });
 */
@@ -105,9 +103,6 @@ function moveCounter()  {
     counter.innerText = moves;
 }
 moveCounter();
-
-
-
 /* set up the event listener for a card. If a card is clicked:
  *  - display the card's symbol (put this functionality in another function that you call from this one)
  *  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
@@ -117,4 +112,3 @@ moveCounter();
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
-
