@@ -59,16 +59,16 @@ shuffle(cards);
     console.log('symbol shown', selectCard);
     };
 
-function openCard(selectCard) {
-    selectCard.classList.add('open');
-    cardsOpen.push(selectCard);
-    moveCounter(selectCard);
-       if (selectCard === 2) {
-        cardMatch(selectCard);
+function openCard(selectCard) {  
+    selectCard.classList.add('open');  //adds 'open' class
+    cardsOpen.push(selectCard); //adds new updated selectCard to cardsOpen array
+    moveCounter(selectCard); // this is where I ended for the day, but it's not working as of this moment
+       if (selectCard === 2) { //this is my problem I thought if I set a strict value to 2 it would lock the cards by updating the 
+        cardMatch(selectCard); //class 'match'
         console.log('yesssssss');
     } else {
-    selectCard.classList.remove('show');
-    cardMismatch(selectCard);
+    selectCard.classList.remove('show'); //if not I am removing the symbol and
+    cardMismatch(selectCard); //removing card from cardsOpen
         console.log('no');
     }
 
