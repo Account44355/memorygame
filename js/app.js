@@ -54,55 +54,59 @@ function shuffle(array) {
 
 shuffle(cards);
 
-function displaySymbol() {
-    const selectCard = this;
+    function displaySymbol(selectCard) { // selectCard is equal to the card that was clicked, no need for this here
     selectCard.classList.add('show');
-    console.log('symbol shown', this);
+    console.log('symbol shown', selectCard);
     };
 
-function openCard() {
-    const selectCard = document.querySelector('.card');
+function openCard(selectCard) {
     selectCard.classList.add('open');
     cardsOpen.push(selectCard);
-       if (selectCard === selectCard) {
-        selectCard.classList.add('match');
-        console.log('yes');
+    moveCounter(selectCard);
+       if (selectCard === 2) {
+        cardMatch(selectCard);
+        console.log('yesssssss');
     } else {
-        selectCard.classList.remove('open', 'show')
+    selectCard.classList.remove('show');
+    cardMismatch(selectCard);
         console.log('no');
     }
 
-    console.log('card open');
+    console.log(selectCard);
 };
 
 
-document.getElementsByClassName('card').forEach(cardEl => {
-  cardEl.addEventListener('click', function() {
+Array.from(document.getElementsByClassName('card')).forEach(function(cards) {
+  cards.addEventListener('click', function() {
+
        displaySymbol(this);
        openCard(this);
-       console.log('clicked')
-
-    // now you can pass in the card el that was clicked, either using this or the cardEl variable
-  });
+       console.log('clicked');
+});
 });
 
+function cardMatch(selectCard) {
+    selectCard.classList.add('match');
+    console.log('matched', selectCard);
+};
 
-/*
-document.getElementById('card5').addEventListener('click', function () {
-    displaySymbol();
-    openCard();
-    console.log('clicked!');
-});
-*/
 
-/*
-function moveCounter()  {
-    const moves = document.querySelector('.moves')
-    document.getElementsbyClassName('card').addEventListener('click' function() {
-    moves++;
-    counter.innerText = moves;
+function cardMismatch(selectCard) {
+    cardsOpen.pop();
+    console.log('misMatchworking', selectCard);
 }
-moveCounter();
+function moveCounter(selectCard) {
+    const mover = document.getElementsByClassName('moves').innerHTML;
+    const number = 0;
+    const increaseNumber = number + 1;
+    mover.appendChild(increaseNumber);
+    console.log("moveCounterworking", selectCard);
+};
+
+
+
+
+/*
 /* set up the event listener for a card. If a card is clicked:
  *  - display the card's symbol (put this functionality in another function that you call from this one)
  *  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
@@ -112,3 +116,4 @@ moveCounter();
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
+
