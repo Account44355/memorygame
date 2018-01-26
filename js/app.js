@@ -59,16 +59,18 @@ shuffle(cards);
     console.log('symbol shown', selectCard);
     };
 
-function openCard(selectCard) {  
-    selectCard.classList.add('open');  //adds 'open' class
-    cardsOpen.push(selectCard); //adds new updated selectCard to cardsOpen array
-    moveCounter(selectCard); // this is where I ended for the day, but it's not working as of this moment
-       if (selectCard === 2) { //this is my problem I thought if I set a strict value to 2 it would lock the cards by updating the 
-        cardMatch(selectCard); //class 'match'
+function openCard(selectCard) {
+    selectCard.classList.add('open');
+    const x = selectCard.attr('id');
+    cardsOpen.push(selectCard);
+
+   // moveCounter(selectCard);
+       if (x === cardsOpen ) {
+        cardMatch(selectCard);
         console.log('yesssssss');
     } else {
-    selectCard.classList.remove('show'); //if not I am removing the symbol and
-    cardMismatch(selectCard); //removing card from cardsOpen
+    selectCard.classList.remove('show');
+    cardMismatch(selectCard);
         console.log('no');
     }
 
@@ -95,6 +97,8 @@ function cardMismatch(selectCard) {
     cardsOpen.pop();
     console.log('misMatchworking', selectCard);
 }
+
+/*
 function moveCounter(selectCard) {
     const mover = document.getElementsByClassName('moves').innerHTML;
     const number = 0;
@@ -102,7 +106,7 @@ function moveCounter(selectCard) {
     mover.appendChild(increaseNumber);
     console.log("moveCounterworking", selectCard);
 };
-
+*/
 
 
 
