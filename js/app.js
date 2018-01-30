@@ -54,59 +54,89 @@ function shuffle(array) {
 
 shuffle(cards);
 
+
+
+
+
+
     function displaySymbol(selectCard) { // selectCard is equal to the card that was clicked, no need for this here
     selectCard.classList.add('show');
     console.log('symbol shown', selectCard);
     };
 
-function openCard(selectCard) {
-    selectCard.classList.add('open');
-    const x = selectCard.attr('id');
-    cardsOpen.push(selectCard);
 
-   // moveCounter(selectCard);
-       if (x === cardsOpen ) {
-        cardMatch(selectCard);
-        console.log('yesssssss');
-    } else {
-    selectCard.classList.remove('show');
-    cardMismatch(selectCard);
-        console.log('no');
-    }
 
-    console.log(selectCard);
+
+    function cardMatch(selectCard) {
+    selectCard.classList.add('match');
+    console.log('matched', selectCard);
 };
 
+
+
+
+    function cardMismatch(selectCard) {
+    cardsOpen.pop();
+    console.log('misMatchworking', selectCard);
+}
+
+
+
+
+function openCard(selectCard) {
+    selectCard.classList.add('open');
+    cardsOpen.push(selectCard);
+    console.log("try this", selectCard)
+};
+
+
+
+
+
+function checkMatch(selectCard) {
+       const openIt = selectCard.id;
+       if (openIt >= cardsOpen.OpenIt) { //If the selectCard.id is already in cardsOpen and it sees there is one or more already there it should match it right?
+        cardMatch(selectCard);  //it will run the cardMatch function and 'lock'
+        console.log('yesssssss');
+    } else {
+    selectCard.classList.remove('show'); //else it will remove the symbol through 'show' and remove the card from the cardsOpen array through cardMismatch function.
+    cardMismatch(selectCard);
+        console.log('no');
+    };
+};
+
+
+function starRemoval(selectCard) {  //removes star 1 by 1 by index node 0
+    const removeStar = document.querySelector('.stars');
+    removeStar.removeChild(removeStar.childNodes[0]);
+    console.log('logMoveworking', selectCard);
+}
+
+
+
+function logMove(selectCard) {
+    const moveCounter = document.querySelector('.moves');
+    const number = 0;
+    const increaseOne = number + 1;
+    moveCounter.innerHTML = increaseOne;
+    moveCounter.appendChild(increaseOne);  //?? Why is this incorrect?
+    console.log('movecounterworking', selectCard);
+}
 
 Array.from(document.getElementsByClassName('card')).forEach(function(cards) {
   cards.addEventListener('click', function() {
 
        displaySymbol(this);
        openCard(this);
+       checkMatch(this);
+       starRemoval(this);
+       //logMove(this);
        console.log('clicked');
 });
 });
 
-function cardMatch(selectCard) {
-    selectCard.classList.add('match');
-    console.log('matched', selectCard);
-};
 
 
-function cardMismatch(selectCard) {
-    cardsOpen.pop();
-    console.log('misMatchworking', selectCard);
-}
-
-/*
-function moveCounter(selectCard) {
-    const mover = document.getElementsByClassName('moves').innerHTML;
-    const number = 0;
-    const increaseNumber = number + 1;
-    mover.appendChild(increaseNumber);
-    console.log("moveCounterworking", selectCard);
-};
-*/
 
 
 
