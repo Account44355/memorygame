@@ -59,10 +59,29 @@ shuffle(cards);
 
 
 
-    function displaySymbol(selectCard) { // selectCard is equal to the card that was clicked, no need for this here
+    function displaySymbol(selectCard) {
     selectCard.classList.add('show');
     console.log('symbol shown', selectCard);
     };
+
+
+
+    function openCard(selectCard) {
+    selectCard.classList.add('open');
+    cardsOpen.push(selectCard);
+    console.log("try this", selectCard)
+};
+
+
+function checkMatch(selectCard) {
+    const openIt = selectCard.id;
+    // if (cardsOpen.includes(selectCard)) {   This will always run because on line 133 it is in the same event listener and it always pushes the 'this' selectCard to the cardsOpen[]
+    // if (cardsOpen.includes(selectCard.id))  I am trying to check if the the id of the 'card' that was pushed to the cardsOpen[] is already there. This is what differentiates the 'card's.
+       if (cardsOpen.includes(openIt)) {
+        cardMatch(selectCard);
+        console.log('yesssssss');
+    };
+};
 
 
 
@@ -83,55 +102,57 @@ shuffle(cards);
 
 
 
-function openCard(selectCard) {
-    selectCard.classList.add('open');
-    cardsOpen.push(selectCard);
-    console.log("try this", selectCard)
-};
 
 
 
 
-
-function checkMatch(selectCard) {
-       const openIt = selectCard.id;
-       if (openIt >= cardsOpen.OpenIt) { //If the selectCard.id is already in cardsOpen and it sees there is one or more already there it should match it right?
-        cardMatch(selectCard);  //it will run the cardMatch function and 'lock'
-        console.log('yesssssss');
-    } else {
-    selectCard.classList.remove('show'); //else it will remove the symbol through 'show' and remove the card from the cardsOpen array through cardMismatch function.
-    cardMismatch(selectCard);
-        console.log('no');
-    };
-};
 
 
 function starRemoval(selectCard) {  //removes star 1 by 1 by index node 0
     const removeStar = document.querySelector('.stars');
+    const removeFa = document.querySelector('.fa fa-star');
     removeStar.removeChild(removeStar.childNodes[0]);
+    /*Uncaught TypeError: Failed to execute 'removeChild' on 'Node': parameter 1 is not of type 'Node'.
+    at starRemoval (app.js:114)
+    at HTMLLIElement.<anonymous> (app.js:151)
+    */
     console.log('logMoveworking', selectCard);
 }
 
 
 
+
+
+
+    let number = 0;
 function logMove(selectCard) {
     const moveCounter = document.querySelector('.moves');
-    const number = 0;
-    const increaseOne = number + 1;
-    moveCounter.innerHTML = increaseOne;
-    moveCounter.appendChild(increaseOne);  //?? Why is this incorrect?
+    const increaseOne = number++;
+    moveCounter.innerText = increaseOne;
+    moveCounter.appendChild(moveCounter.innerText);
+    /*;app.js:128 Uncaught TypeError: Failed to execute 'appendChild' on 'Node': parameter 1 is not of type 'Node'.
+    at logMove (app.js:128)
+    at HTMLLIElement.<anonymous> (app.js:145)
+    */
     console.log('movecounterworking', selectCard);
 }
+
+
+
+
+
+
+
 
 Array.from(document.getElementsByClassName('card')).forEach(function(cards) {
   cards.addEventListener('click', function() {
 
-       displaySymbol(this);
-       openCard(this);
-       checkMatch(this);
-       starRemoval(this);
-       //logMove(this);
-       console.log('clicked');
+    displaySymbol(this);
+    openCard(this);
+    checkMatch(this);
+    logMove(this);
+    starRemoval(this);
+    console.log('clicked');
 });
 });
 
