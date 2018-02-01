@@ -3,14 +3,14 @@
  */
 
 
-const card1 = document.querySelector('.card1');
-const card2 = document.querySelector('.card2');
-const card3 = document.querySelector('.card3');
-const card4 = document.querySelector('.card4');
-const card5 = document.querySelector('.card5');
-const card6 = document.querySelector('.card6');
-const card7 = document.querySelector('.card7');
-const card8 = document.querySelector('.card8');
+const card1 = document.querySelector('card1');
+const card2 = document.querySelector('card2');
+const card3 = document.querySelector('card3');
+const card4 = document.querySelector('card4');
+const card5 = document.querySelector('card5');
+const card6 = document.querySelector('card6');
+const card7 = document.querySelector('card7');
+const card8 = document.querySelector('card8');
 
 
 const cards = [
@@ -68,18 +68,19 @@ shuffle(cards);
 
     function openCard(selectCard) {
     selectCard.classList.add('open');
-    cardsOpen.push(selectCard);
-    console.log("try this", selectCard)
+    cardsOpen.push(selectCard.id);
+    console.log("card is opened", selectCard)
 };
 
 
 function checkMatch(selectCard) {
     const openIt = selectCard.id;
-    // if (cardsOpen.includes(selectCard)) {   This will always run because on line 133 it is in the same event listener and it always pushes the 'this' selectCard to the cardsOpen[]
-    // if (cardsOpen.includes(selectCard.id))  I am trying to check if the the id of the 'card' that was pushed to the cardsOpen[] is already there. This is what differentiates the 'card's.
        if (cardsOpen.includes(openIt)) {
         cardMatch(selectCard);
-        console.log('yesssssss');
+        console.log('yes match');
+    } else {
+        cardMismatch(selectCard)
+        console.log('no match');
     };
 };
 
@@ -95,7 +96,7 @@ function checkMatch(selectCard) {
 
 
     function cardMismatch(selectCard) {
-    cardsOpen.pop();
+    //cardsOpen.pop();
     console.log('misMatchworking', selectCard);
 }
 
@@ -107,18 +108,21 @@ function checkMatch(selectCard) {
 
 
 
+/*
+function starRemoval(selectCard) {
+    const removeStar = document.getElementById('stars');
+    const removeFa = document.getElementById('fa fa-star');
 
-function starRemoval(selectCard) {  //removes star 1 by 1 by index node 0
-    const removeStar = document.querySelector('.stars');
-    const removeFa = document.querySelector('.fa fa-star');
-    removeStar.removeChild(removeStar.childNodes[0]);
-    /*Uncaught TypeError: Failed to execute 'removeChild' on 'Node': parameter 1 is not of type 'Node'.
-    at starRemoval (app.js:114)
-    at HTMLLIElement.<anonymous> (app.js:151)
-    */
-    console.log('logMoveworking', selectCard);
-}
+        if (removeStar.includes(removeFa) === true); {
+        removeStar.removeChild(removeStar.childNodes[0]);
+        //removeStar.pop();
+        console.log('logMoveworking', selectCard);
+    } else {
+        console.log('no more cards');
+    };
 
+};
+*/
 
 
 
@@ -127,14 +131,15 @@ function starRemoval(selectCard) {  //removes star 1 by 1 by index node 0
     let number = 0;
 function logMove(selectCard) {
     const moveCounter = document.querySelector('.moves');
+    const div = document.createElement('span')
     const increaseOne = number++;
-    moveCounter.innerText = increaseOne;
-    moveCounter.appendChild(moveCounter.innerText);
-    /*;app.js:128 Uncaught TypeError: Failed to execute 'appendChild' on 'Node': parameter 1 is not of type 'Node'.
-    at logMove (app.js:128)
-    at HTMLLIElement.<anonymous> (app.js:145)
-    */
+
+    moveCounter.innerText = div.innerText;
+    div.innerText = increaseOne;
+    moveCounter.appendChild(div);
+
     console.log('movecounterworking', selectCard);
+
 }
 
 
@@ -151,10 +156,11 @@ Array.from(document.getElementsByClassName('card')).forEach(function(cards) {
     openCard(this);
     checkMatch(this);
     logMove(this);
-    starRemoval(this);
+  //starRemoval(this);
     console.log('clicked');
 });
 });
+
 
 
 
