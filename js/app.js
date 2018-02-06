@@ -68,22 +68,24 @@ shuffle(cards);
 
     function openCard(selectCard) {
     selectCard.classList.add('open');
-    cardsOpen.push(selectCard.id);
+    cardsOpen.push(selectCard);
     console.log("card is opened", selectCard)
 };
 
 
-function checkMatch(selectCard) {
-    const openIt = selectCard.id;
-       if (cardsOpen.includes(openIt)) {
-        cardMatch(selectCard);
-        console.log('yes match');
-    } else {
-        cardMismatch(selectCard)
-        console.log('no match');
-    };
+  function checkMatch(selectCard) {
+    const id = selectCard.id;
+    const cardNumber = id.slice(0, 5);
+    const match = cardsOpen.find(function(openCard) {
+   if (cardsOpen.includes(cardNumber)) {
+    cardMatch()
+    console.log('match initiated')
+   } else {
+    cardMismatch()
+    console.log('no match');
+   };
+});
 };
-
 
 
 
@@ -98,7 +100,7 @@ function checkMatch(selectCard) {
     function cardMismatch(selectCard) {
     //cardsOpen.pop();
     console.log('misMatchworking', selectCard);
-}
+};
 
 
 
@@ -113,7 +115,17 @@ function starRemoval(selectCard) {
     const removeStar = document.getElementById('stars');
     const removeFa = document.getElementById('fa fa-star');
 
-        if (removeStar.includes(removeFa) === true); {
+if (removeStar.includes(removeFa) === true) { // <--- right here
+       removeStar.removeChild(removeStar.childNodes[0]);
+        //removeStar.pop();
+        console.log('logMoveworking', selectCard);
+    } else {
+        console.log('no more cards');
+    };
+
+
+
+        if (removeStar.includes(removeFa) === true) {
         removeStar.removeChild(removeStar.childNodes[0]);
         //removeStar.pop();
         console.log('logMoveworking', selectCard);
@@ -139,7 +151,6 @@ function logMove(selectCard) {
     moveCounter.appendChild(div);
 
     console.log('movecounterworking', selectCard);
-
 }
 
 
@@ -177,4 +188,6 @@ Array.from(document.getElementsByClassName('card')).forEach(function(cards) {
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
+
+
 
