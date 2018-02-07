@@ -68,38 +68,32 @@ shuffle(cards);
 
     function openCard(selectCard) {
     selectCard.classList.add('open');
-    cardsOpen.push(selectCard);
+    const id = selectCard.id;
+    const cardNumber = id.slice(0, 5);
+    cardsOpen.push(cardNumber);
     console.log("card is opened", selectCard)
 };
 
 
+    function cardMatch() {
+    const check = document.getElementsbyClassName("open show")
+    check.classList.remove("open show")
+    check.classList.add('match');
+
+    console.log('matched');
+};
+
   function checkMatch(selectCard) {
     const id = selectCard.id;
-    const cardNumber = id.slice(0, 5);
-    const match = cardsOpen.find(function(openCard) {
-   if (cardsOpen.includes(cardNumber)) {
-    cardMatch()
+    const cardNumbers = id.slice(0, 5);
+
+   if (cardsOpen.includes(cardNumbers)) {
+    cardMatch();
     console.log('match initiated')
    } else {
     cardMismatch()
     console.log('no match');
    };
-});
-};
-
-
-
-    function cardMatch(selectCard) {
-    selectCard.classList.add('match');
-    console.log('matched', selectCard);
-};
-
-
-
-
-    function cardMismatch(selectCard) {
-    //cardsOpen.pop();
-    console.log('misMatchworking', selectCard);
 };
 
 
@@ -107,34 +101,34 @@ shuffle(cards);
 
 
 
+    function cardMismatch() {
+    const removeCard = document.getElementsbyClassName('open show')
+    removeCard.classList.remove('open show');
+    cardsOpen.pop();
+    console.log('misMatchworking');
+};
 
 
 
-/*
+
+
+
+
+
+
+
 function starRemoval(selectCard) {
-    const removeStar = document.getElementById('stars');
-    const removeFa = document.getElementById('fa fa-star');
-
+    const removeStar = document.getElementsbyClassName('stars');
+    const removeFa = document.querySelector('.fa fa-star');
 if (removeStar.includes(removeFa) === true) { // <--- right here
        removeStar.removeChild(removeStar.childNodes[0]);
         //removeStar.pop();
         console.log('logMoveworking', selectCard);
     } else {
         console.log('no more cards');
-    };
-
-
-
-        if (removeStar.includes(removeFa) === true) {
-        removeStar.removeChild(removeStar.childNodes[0]);
-        //removeStar.pop();
-        console.log('logMoveworking', selectCard);
-    } else {
-        console.log('no more cards');
-    };
-
+    }
 };
-*/
+
 
 
 
@@ -165,7 +159,7 @@ Array.from(document.getElementsByClassName('card')).forEach(function(cards) {
 
     displaySymbol(this);
     openCard(this);
-    checkMatch(this);
+   // checkMatch(this);
     logMove(this);
   //starRemoval(this);
     console.log('clicked');
@@ -188,6 +182,5 @@ Array.from(document.getElementsByClassName('card')).forEach(function(cards) {
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
-
 
 
