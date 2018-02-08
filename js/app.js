@@ -71,19 +71,54 @@ shuffle(cards);
     const id = selectCard.id;
     const cardNumber = id.slice(0, 5);
     cardsOpen.push(cardNumber);
-    console.log("card is opened", selectCard)
+    logMove(this)
+    console.log("card is opened & move is logged", selectCard)
 };
+
+
+
+let number = 1;
+function logMove(selectCard) {
+    const moveCounter = document.querySelector('.moves');
+    const div = document.createElement('span')
+    const increaseOne = number++;
+
+    moveCounter.innerText = div.innerText;
+    div.innerText = increaseOne;
+    moveCounter.appendChild(div);
+    if (div.innerText == 16) {
+        starRemoval();
+        console.log('okay');
+    } else if (div.innerText == 24) {
+        starRemoval();
+        console.log('okay okay')
+    } else if (div.innerText == 30) {
+        starRemoval();
+        console.log('okay okay okay')
+    } else {
+        console.log('adding more moves');
+    }
+
+    console.log('movecounterworking', selectCard);
+};
+
+
+
 
 
     function cardMatch() {
-    const check = document.getElementsbyClassName("open show")
-    check.classList.remove("open show")
-    check.classList.add('match');
-
-    console.log('matched');
+    const grabOpenShow = document.querySelect(this.id)
+    const listOfClasses = grabOpenShow.className
+    grabOpenShow.className.remove('open');
+    grabOpenShow.className.remove('show');
+    console.log(listOfClasses);
+    console.log('cardMatchworking');
 };
 
+
+
   function checkMatch(selectCard) {
+;
     const id = selectCard.id;
     const cardNumbers = id.slice(0, 5);
 
@@ -115,37 +150,32 @@ shuffle(cards);
 
 
 
-
-
 function starRemoval(selectCard) {
-    const removeStar = document.getElementsbyClassName('stars');
-    const removeFa = document.querySelector('.fa fa-star');
-if (removeStar.includes(removeFa) === true) { // <--- right here
-       removeStar.removeChild(removeStar.childNodes[0]);
-        //removeStar.pop();
-        console.log('logMoveworking', selectCard);
-    } else {
-        console.log('no more cards');
-    }
-};
-
-
-
-
-
-
-    let number = 0;
-function logMove(selectCard) {
-    const moveCounter = document.querySelector('.moves');
-    const div = document.createElement('span')
-    const increaseOne = number++;
-
-    moveCounter.innerText = div.innerText;
-    div.innerText = increaseOne;
-    moveCounter.appendChild(div);
-
-    console.log('movecounterworking', selectCard);
+  const removeStar = document.getElementsByClassName('stars')[0]
+  console.log({ removeStar })
+  if (removeStar.children.length > 0) {
+    // <--- right here
+    removeStar.removeChild(removeStar.children[0])
+    //removeStar.pop();
+    console.log('logMoveworking', selectCard)
+  } else {
+    console.log('no more cards')
+  }
 }
+
+
+
+
+
+    const restartIt = document.querySelector(".restart");
+    restartIt.addEventListener('click', function() {
+    location.reload();
+    console.log('You reset the game');
+});
+
+
+
+
 
 
 
@@ -159,9 +189,7 @@ Array.from(document.getElementsByClassName('card')).forEach(function(cards) {
 
     displaySymbol(this);
     openCard(this);
-   // checkMatch(this);
-    logMove(this);
-  //starRemoval(this);
+   checkMatch(this);
     console.log('clicked');
 });
 });
@@ -182,5 +210,4 @@ Array.from(document.getElementsByClassName('card')).forEach(function(cards) {
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
-
 
