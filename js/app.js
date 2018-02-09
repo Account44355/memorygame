@@ -107,24 +107,23 @@ function logMove(selectCard) {
 
 
     function cardMatch() {
-    const grabOpenShow = document.querySelect(this.id)
-    const listOfClasses = grabOpenShow.className
-    grabOpenShow.className.remove('open');
-    grabOpenShow.className.remove('show');
-    console.log(listOfClasses);
+    const grabOpenShow = document.querySelector('.open');
+    grabOpenShow.classList.remove('open');
+    grabOpenShow.classList.remove('show');
+    grabOpenShow.classList.add('match');
     console.log('cardMatchworking');
 };
 
 
 
   function checkMatch(selectCard) {
-;
     const id = selectCard.id;
     const cardNumbers = id.slice(0, 5);
 
    if (cardsOpen.includes(cardNumbers)) {
+
     cardMatch();
-    console.log('match initiated')
+    console.log('match initiated');
    } else {
     cardMismatch()
     console.log('no match');
@@ -137,8 +136,9 @@ function logMove(selectCard) {
 
 
     function cardMismatch() {
-    const removeCard = document.getElementsbyClassName('open show')
-    removeCard.classList.remove('open show');
+    const removeCard = document.querySelector('.open')
+    removeCard.classList.remove('open');
+    removeCard.classList.remove('show');
     cardsOpen.pop();
     console.log('misMatchworking');
 };
@@ -154,14 +154,33 @@ function starRemoval(selectCard) {
   const removeStar = document.getElementsByClassName('stars')[0]
   console.log({ removeStar })
   if (removeStar.children.length > 0) {
-    // <--- right here
     removeStar.removeChild(removeStar.children[0])
-    //removeStar.pop();
     console.log('logMoveworking', selectCard)
   } else {
     console.log('no more cards')
   }
 }
+
+
+
+
+
+function finishGame() {
+    clearInterval(timerInterval);
+    alert('Congratulations! You have won in ' + timer + ' seconds!');
+}
+
+
+
+    let timer = 0
+    const moveTimer = document.querySelector('.timer');
+    const timerDiv = document.createElement('span')
+    timerDiv.innerHTML = timer;
+    timerInterval = setInterval(function() {
+    timer++
+    timerDiv.innerHTML = timer;
+    moveTimer.appendChild(timerDiv);
+    }, 1000);
 
 
 
@@ -175,15 +194,6 @@ function starRemoval(selectCard) {
 
 
 
-
-
-
-
-
-
-
-
-
 Array.from(document.getElementsByClassName('card')).forEach(function(cards) {
   cards.addEventListener('click', function() {
 
@@ -191,6 +201,7 @@ Array.from(document.getElementsByClassName('card')).forEach(function(cards) {
     openCard(this);
    checkMatch(this);
     console.log('clicked');
+
 });
 });
 
