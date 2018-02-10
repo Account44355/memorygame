@@ -68,11 +68,19 @@ shuffle(cards);
 
     function openCard(selectCard) {
     selectCard.classList.add('open');
+    console.log('Open class has been added to card')
     const id = selectCard.id;
     const cardNumber = id.slice(0, 5);
+
+    if (cardsOpen.length === 1) {
+
+        checkMatch(selectCard)
+        cardsOpen.pop()
+
+    }  else {
     cardsOpen.push(cardNumber);
-    logMove(this)
-    console.log("card is opened & move is logged", selectCard)
+    console.log("card is put into cardsOpen array")
+};
 };
 
 
@@ -88,30 +96,31 @@ function logMove(selectCard) {
     moveCounter.appendChild(div);
     if (div.innerText == 16) {
         starRemoval();
-        console.log('okay');
+        console.log('Removed 1 star');
     } else if (div.innerText == 24) {
         starRemoval();
-        console.log('okay okay')
+        console.log('Removed 2 stars')
     } else if (div.innerText == 30) {
         starRemoval();
-        console.log('okay okay okay')
+        console.log('Removed 3 stars')
     } else {
         console.log('adding more moves');
     }
 
-    console.log('movecounterworking', selectCard);
+    console.log('Move logged.', selectCard);
 };
 
 
 
 
 
-    function cardMatch() {
+    function cardMatch(selectCard) {
     const grabOpenShow = document.querySelector('.open');
     grabOpenShow.classList.remove('open');
     grabOpenShow.classList.remove('show');
     grabOpenShow.classList.add('match');
-    console.log('cardMatchworking');
+    cardsOpen.pop()
+    console.log('cardMatch working');
 };
 
 
@@ -119,14 +128,13 @@ function logMove(selectCard) {
   function checkMatch(selectCard) {
     const id = selectCard.id;
     const cardNumbers = id.slice(0, 5);
-
    if (cardsOpen.includes(cardNumbers)) {
 
     cardMatch();
-    console.log('match initiated');
+    console.log('checkMatch working');
    } else {
     cardMismatch()
-    console.log('no match');
+    console.log('checkMatch working');
    };
 };
 
@@ -135,7 +143,7 @@ function logMove(selectCard) {
 
 
 
-    function cardMismatch() {
+    function cardMismatch(selectCard) {
     const removeCard = document.querySelector('.open')
     removeCard.classList.remove('open');
     removeCard.classList.remove('show');
@@ -199,8 +207,7 @@ Array.from(document.getElementsByClassName('card')).forEach(function(cards) {
 
     displaySymbol(this);
     openCard(this);
-   checkMatch(this);
-    console.log('clicked');
+    logMove(this);
 
 });
 });
