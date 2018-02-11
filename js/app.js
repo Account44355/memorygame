@@ -61,7 +61,7 @@ shuffle(cards);
 
     function displaySymbol(selectCard) {
     selectCard.classList.add('show');
-    console.log('symbol shown', selectCard);
+    console.log('Symbol class has been added to classList', selectCard);
     };
 
 
@@ -74,8 +74,8 @@ shuffle(cards);
 
     if (cardsOpen.length === 1) {
 
-        checkMatch(selectCard)
-        cardsOpen.pop()
+        checkMatch(selectCard);
+
 
     }  else {
     cardsOpen.push(cardNumber);
@@ -115,13 +115,24 @@ function logMove(selectCard) {
 
 
     function cardMatch(selectCard) {
-    const grabOpenShow = document.querySelector('.open');
-    grabOpenShow.classList.remove('open');
-    grabOpenShow.classList.remove('show');
-    grabOpenShow.classList.add('match');
+
+    selectCard.classList.remove('open');
+    selectCard.classList.remove('show');
+    selectCard.classList.add('match');
     cardsOpen.pop()
     console.log('cardMatch working');
 };
+
+
+
+
+    function cardMismatch(selectCard) {
+    selectCard.classList.remove('open');
+    selectCard.classList.remove('show')
+    cardsOpen.pop();
+    console.log('misMatchworking');
+};
+
 
 
 
@@ -135,6 +146,7 @@ function logMove(selectCard) {
    } else {
     cardMismatch()
     console.log('checkMatch working');
+
    };
 };
 
@@ -142,14 +154,6 @@ function logMove(selectCard) {
 
 
 
-
-    function cardMismatch(selectCard) {
-    const removeCard = document.querySelector('.open')
-    removeCard.classList.remove('open');
-    removeCard.classList.remove('show');
-    cardsOpen.pop();
-    console.log('misMatchworking');
-};
 
 
 
