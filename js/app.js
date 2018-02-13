@@ -90,7 +90,6 @@ function logMove(selectCard) {
     const moveCounter = document.querySelector('.moves');
     const div = document.createElement('span')
     const increaseOne = number++;
-
     moveCounter.innerText = div.innerText;
     div.innerText = increaseOne;
     moveCounter.appendChild(div);
@@ -112,13 +111,33 @@ function logMove(selectCard) {
 
 
 
+function findingCard() {
+    cardsOpen.find(function(element) {
+    element.classList.remove('open');
+    element.classList.remove('show');
+    element.classList.add('match');
+    //console.log(element);
+        return element;
+    });
+    };
+
+
+    function findingCardMismatch() {
+            cardsOpen.find(function(element) {
+    element.classList.remove('open');
+    element.classList.remove('show');
+    //console.log(element);
+        return element;
+    });
+    };
+
 
 
     function cardMatch(selectCard) {
-
     selectCard.classList.remove('open');
     selectCard.classList.remove('show');
     selectCard.classList.add('match');
+    findingCard();
     cardsOpen.pop()
     console.log('cardMatch working');
 };
@@ -129,6 +148,7 @@ function logMove(selectCard) {
     function cardMismatch(selectCard) {
     selectCard.classList.remove('open');
     selectCard.classList.remove('show')
+    findingCardMisMatch();
     cardsOpen.pop();
     console.log('misMatchworking');
 };
@@ -141,23 +161,14 @@ function logMove(selectCard) {
     const cardNumbers = id.slice(0, 5);
    if (cardsOpen.includes(cardNumbers)) {
 
-    cardMatch();
+    cardMatch(selectCard);
     console.log('checkMatch working');
    } else {
-    cardMismatch()
+    cardMismatch(selectCard)
     console.log('checkMatch working');
 
    };
 };
-
-
-
-
-
-
-
-
-
 
 
 
