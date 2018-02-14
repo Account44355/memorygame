@@ -110,26 +110,12 @@ function logMove(selectCard) {
 };
 
 
-
-function findingCard() {
-    cardsOpen.find(function(element) {
-    element.classList.remove('open');
-    element.classList.remove('show');
-    element.classList.add('match');
-    //console.log(element);
-        return element;
-    });
-    };
-
-
-    function findingCardMismatch() {
-            cardsOpen.find(function(element) {
-    element.classList.remove('open');
-    element.classList.remove('show');
-    //console.log(element);
-        return element;
-    });
-    };
+function findingCard(selectCard) {
+     cardsOpen.find(function(element) {
+     const cardInArray = element.splice(0, 1, "");
+     console.log(cardInArray);
+     })
+}
 
 
 
@@ -148,7 +134,7 @@ function findingCard() {
     function cardMismatch(selectCard) {
     selectCard.classList.remove('open');
     selectCard.classList.remove('show')
-    findingCardMisMatch();
+   // findingCardMisMatch();
     cardsOpen.pop();
     console.log('misMatchworking');
 };
