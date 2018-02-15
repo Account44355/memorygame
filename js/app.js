@@ -72,13 +72,14 @@ shuffle(cards);
     const id = selectCard.id;
     const cardNumber = id.slice(0, 5);
 
-    if (cardsOpen.length === 1) {
+    if (cardsOpen.length === 2) {
 
         checkMatch(selectCard);
 
 
     }  else {
     cardsOpen.push(cardNumber);
+    cardsOpen.push(id);
     console.log("card is put into cardsOpen array")
 };
 };
@@ -111,10 +112,11 @@ function logMove(selectCard) {
 
 
 function findingCard(selectCard) {
-     cardsOpen.find(function(element) {
-     const cardInArray = element.splice(0, 1, "");
-     console.log(cardInArray);
-     })
+    const cardId = selectCard.id;
+    if (cardId.endsWith('-1') && cardsOpen[1].endWith('-2') {
+
+    }
+    }
 }
 
 
@@ -123,8 +125,8 @@ function findingCard(selectCard) {
     selectCard.classList.remove('open');
     selectCard.classList.remove('show');
     selectCard.classList.add('match');
-    findingCard();
-    cardsOpen.pop()
+    findingCard(selectCard);
+   // cardsOpen.pop()
     console.log('cardMatch working');
 };
 
