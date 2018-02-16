@@ -80,7 +80,7 @@ shuffle(cards);
     }  else {
     cardsOpen.push(cardNumber);
     cardsOpen.push(id);
-    console.log("card is put into cardsOpen array")
+    console.log("the card is put into cardsOpen array")
 };
 };
 
@@ -113,12 +113,36 @@ function logMove(selectCard) {
 
 function findingCard(selectCard) {
     const cardId = selectCard.id;
-    if (cardId.endsWith('-1') && cardsOpen[1].endWith('-2') {
-
-    }
-    }
+    if (cardId.endsWith('-1') && cardsOpen[1].endsWith('-2')) {
+ //   cardsOpen[1].classList.remove('open');
+ //   cardsOpen[1].classList.remove('show');
+ //   cardsOpen[1].classList.add('match');
+      cardsOpen.pop();
+      cardsOpen.pop();
+    console.log('You matched a set!');
+}   else if (cardId.endsWith('-1') && cardsOpen[1].endsWith('-1')) {
+    alert('You cannot click the same card twice.')
+    location.reload();
+}   else if (cardId.endsWith('-2') && cardsOpen[1].endsWith('-1')) {
+ //   cardsOpen[1].classList.remove('open');
+ //   cardsOpen[1].classList.remove('show');
+    cardsOpen.pop();
+    cardsOpen.pop();
+    console.log('You matched a set!');
+}   else if (cardId.endsWith('-2') && cardsOpen[1].endsWith('-2')) {
+    alert('You cannot click the same card twice.')
+    location.reload();
+}   else {
+    console.log('*This should never be logged');
+}
 }
 
+function findingCardMisMatch(selectCard) {
+    const selectCardClass = cardsOpen[1].classList
+ //   selectCardClass.classList.remove('open');
+ //   cardsOpen[1].classList.remove('show');
+    console.log('Removing Unmatching card from array and returning original classList');
+}
 
 
     function cardMatch(selectCard) {
@@ -126,7 +150,6 @@ function findingCard(selectCard) {
     selectCard.classList.remove('show');
     selectCard.classList.add('match');
     findingCard(selectCard);
-   // cardsOpen.pop()
     console.log('cardMatch working');
 };
 
@@ -136,8 +159,8 @@ function findingCard(selectCard) {
     function cardMismatch(selectCard) {
     selectCard.classList.remove('open');
     selectCard.classList.remove('show')
-   // findingCardMisMatch();
-    cardsOpen.pop();
+    findingCardMisMatch();
+
     console.log('misMatchworking');
 };
 
@@ -152,7 +175,7 @@ function findingCard(selectCard) {
     cardMatch(selectCard);
     console.log('checkMatch working');
    } else {
-    cardMismatch(selectCard)
+    cardMismatch(selectCard);
     console.log('checkMatch working');
 
    };
