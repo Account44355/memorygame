@@ -113,10 +113,12 @@ function logMove(selectCard) {
 
 function findingCard(selectCard) {
     const cardId = selectCard.id;
+    const cardInArrayId = document.getElementById(cardsOpen[1])
+    const cardInArrayClass = cardInArrayId.classList
     if (cardId.endsWith('-1') && cardsOpen[1].endsWith('-2')) {
- //   cardsOpen[1].classList.remove('open');
- //   cardsOpen[1].classList.remove('show');
- //   cardsOpen[1].classList.add('match');
+ //   cardInArrayClass.classList.remove('open');
+ //   cardInArrayClass.classList.remove('show');
+ //   cardinArrayClass.classList.add('match');
       cardsOpen.pop();
       cardsOpen.pop();
     console.log('You matched a set!');
@@ -124,8 +126,9 @@ function findingCard(selectCard) {
     alert('You cannot click the same card twice.')
     location.reload();
 }   else if (cardId.endsWith('-2') && cardsOpen[1].endsWith('-1')) {
- //   cardsOpen[1].classList.remove('open');
- //   cardsOpen[1].classList.remove('show');
+ //   cardInArrayClass.classList.remove('open');
+ //   cardInArrayClass.classList.remove('show');
+ //   cardinArrayClass.classList.add('match');
     cardsOpen.pop();
     cardsOpen.pop();
     console.log('You matched a set!');
@@ -137,12 +140,19 @@ function findingCard(selectCard) {
 }
 }
 
+
+
 function findingCardMisMatch(selectCard) {
-    const selectCardClass = cardsOpen[1].classList
- //   selectCardClass.classList.remove('open');
- //   cardsOpen[1].classList.remove('show');
+    const selectCardId = document.getElementById(cardsOpen[1]);
+    const selectCardClass = selectCardId.classList;
+  //  selectCardClass.classList.remove('open');
+  //  selectCardClass.classList.remove('show');
+  cardsOpen.pop();
+  cardsOpen.pop();
     console.log('Removing Unmatching card from array and returning original classList');
 }
+
+
 
 
     function cardMatch(selectCard) {
@@ -159,7 +169,7 @@ function findingCardMisMatch(selectCard) {
     function cardMismatch(selectCard) {
     selectCard.classList.remove('open');
     selectCard.classList.remove('show')
-    findingCardMisMatch();
+    findingCardMisMatch(selectCard);
 
     console.log('misMatchworking');
 };
