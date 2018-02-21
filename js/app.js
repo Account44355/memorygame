@@ -211,7 +211,7 @@ function starRemoval(selectCard) {
 
 function finishGame() {
     clearInterval(timerInterval);
-    alert('Congratulations! You have won in ' + timer + ' seconds!');
+    alert('Congratulations! You have won in ' + timer + ' seconds! Would you like to play again?');
 }
 
 
