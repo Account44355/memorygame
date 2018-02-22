@@ -1,8 +1,6 @@
-/*
- * Create a list that holds all of your cards
- */
 
 
+//List of Cards and selecting IDs from index.html
 const card1 = document.querySelector('card1');
 const card2 = document.querySelector('card2');
 const card3 = document.querySelector('card3');
@@ -12,7 +10,7 @@ const card6 = document.querySelector('card6');
 const card7 = document.querySelector('card7');
 const card8 = document.querySelector('card8');
 
-
+// Array of cards
 const cards = [
     'card1',
     'card2',
@@ -26,17 +24,7 @@ const cards = [
 
 const cardsOpen = [];
 
-/*
- * Display the cards on the page
- *   - shuffle the list of cards using the provided "shuffle" method below
- *   - loop through each card and create its HTML
- *   - add each card's HTML to the page
- */
-
-// Shuffle function from http://stackoverflow.com/a/2450976
-
-
-
+//shuffling cardsOpen Array
 
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
@@ -57,14 +45,14 @@ shuffle(cards);
 
 
 
-
+//Displays 'symbol' on clicked card
 
     function displaySymbol(selectCard) {
     selectCard.classList.add('show');
     console.log('Symbol class has been added to classList', selectCard);
     };
 
-
+//Displays 'open' on select Card and checks if card is in cardsOpen array
 
     function openCard(selectCard) {
     selectCard.classList.add('open');
@@ -84,7 +72,7 @@ shuffle(cards);
 };
 };
 
-
+//Logs moves and removes stars
 
 let number = 1;
 function logMove(selectCard) {
@@ -110,25 +98,26 @@ function logMove(selectCard) {
     console.log('Move logged.', selectCard);
 };
 
-
+//Finds matched card in cardsOpen array and determines if there is a match
 function findingCard(selectCard) {
     const cardId = selectCard.id;
     const cardInArrayId = document.getElementById(cardsOpen[1])
-    const cardInArrayClass = cardInArrayId.classList
+
     if (cardId.endsWith('-1') && cardsOpen[1].endsWith('-2')) {
- //   cardInArrayClass.classList.remove('open');
- //   cardInArrayClass.classList.remove('show');
- //   cardinArrayClass.classList.add('match');
-      cardsOpen.pop();
-      cardsOpen.pop();
+    cardInArrayId.classList.remove('open');
+    cardInArrayId.classList.remove('show');
+    cardInArrayId.classList.add('match');
+    cardsOpen.pop();
+    cardsOpen.pop();
+    finishGame();
     console.log('You matched a set!');
 }   else if (cardId.endsWith('-1') && cardsOpen[1].endsWith('-1')) {
     alert('You cannot click the same card twice.')
     location.reload();
 }   else if (cardId.endsWith('-2') && cardsOpen[1].endsWith('-1')) {
- //   cardInArrayClass.classList.remove('open');
- //   cardInArrayClass.classList.remove('show');
- //   cardinArrayClass.classList.add('match');
+    cardInArrayId.classList.remove('open');
+    cardInArrayId.classList.remove('show');
+    cardInArrayId.classList.add('match');
     cardsOpen.pop();
     cardsOpen.pop();
     console.log('You matched a set!');
@@ -141,14 +130,14 @@ function findingCard(selectCard) {
 }
 
 
-
+// Removes 'symbol' and 'open' class from the card in cardsOpen
 function findingCardMisMatch(selectCard) {
     const selectCardId = document.getElementById(cardsOpen[1]);
     const selectCardClass = selectCardId.classList;
-  //  selectCardClass.classList.remove('open');
-  //  selectCardClass.classList.remove('show');
-  cardsOpen.pop();
-  cardsOpen.pop();
+    selectCardClass.remove('open');
+    selectCardClass.remove('show');
+    cardsOpen.pop();
+    cardsOpen.pop();
     console.log('Removing Unmatching card from array and returning original classList');
 }
 
@@ -207,15 +196,15 @@ function starRemoval(selectCard) {
 
 
 
-
+//Runs if all cards have the 'match' class.
 
 function finishGame() {
     clearInterval(timerInterval);
-    alert('Congratulations! You have won in ' + timer + ' seconds! Would you like to play again?');
+    alert('Congratulations! You have won in ' + timer + ' seconds and ' + number + ' moves!');
 }
 
 
-
+//Starts a timer
     let timer = 0
     const moveTimer = document.querySelector('.timer');
     const timerDiv = document.createElement('span')
@@ -228,7 +217,7 @@ function finishGame() {
 
 
 
-
+// Resets game
 
     const restartIt = document.querySelector(".restart");
     restartIt.addEventListener('click', function() {
@@ -236,7 +225,7 @@ function finishGame() {
     console.log('You reset the game');
 });
 
-
+//Even Listener for clicked card
 
 Array.from(document.getElementsByClassName('card')).forEach(function(cards) {
   cards.addEventListener('click', function() {
